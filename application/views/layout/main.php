@@ -1,3 +1,9 @@
+<?php  
+	if (!$this->session->userdata('id')) {
+		redirect('Login','refresh');
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

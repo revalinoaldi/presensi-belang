@@ -3,19 +3,19 @@
 		<span>Main</span> 
 		<i class="zmdi zmdi-more"></i>
 	</li>
-	 <li>
-                <a class="active" href="<?php echo base_url('dashboard') ?>">
-                    <div class="pull-left">
-                    <i class="zmdi zmdi-landscape mr-20"></i>
-                   <span class="right-nav-text">Dashboard</span>
-               </div>
-               <div class="pull-right">
-			<i class="zmdi zmdi"></i>
-		</div>
-		<div class="clearfix">
-		</div>
-           </a>
-            </li>
+	<li>
+		<a class="active" href="<?php echo base_url('dashboard') ?>">
+			<div class="pull-left">
+				<i class="zmdi zmdi-landscape mr-20"></i>
+				<span class="right-nav-text">Dashboard</span>
+			</div>
+			<div class="pull-right">
+				<i class="zmdi zmdi"></i>
+			</div>
+			<div class="clearfix">
+			</div>
+		</a>
+	</li>
 	
 	<li>
 		<a href="javascript:void(0);" data-toggle="collapse" data-target="#ecom_dr"><div class="pull-left"><i class="zmdi zmdi-book mr-20"></i><span class="right-nav-text">Data Utama</span></div><div class="pull-right"></div><div class="clearfix"></div></a>
@@ -40,13 +40,6 @@
 			<li>
 				<a href="<?php echo base_url('absensi/lembur') ?>">Daftar Lembur</a>
 			</li>
-			<li>
-				<a href="<?php echo base_url('absensi/cuti') ?>">Daftar Cuti</a>
-			</li>
-			<li>
-				<a href="weather.html">Hitung Gaji</a>
-			</li>
-		
 		</ul>
 	</li>
 	<li>

@@ -15,6 +15,16 @@
 		</div>	
 		<!-- Row -->
 		<div class="row">
+			<?php if (@$this->session->flashdata('notif')): ?>
+				<div class="col-sm-12">
+					<?php  
+					if (@$this->session->flashdata('notif')) {
+						echo $this->session->flashdata('notif');
+						$this->session->unset_userdata('notif');
+					}
+					?>
+				</div>
+			<?php endif ?>
 			<div class="col-sm-12">
 				<div class="panel panel-default card-view">
 					<div class="panel-heading">
@@ -22,9 +32,15 @@
 							<h6 class="panel-title txt-dark">Data Absensi</h6>
 							<p>Record Date : <?= date('d M Y', strtotime($date['tgl_from'])) ?> - <?= date('d M Y', strtotime($date['tgl_at'])) ?></p>
 						</div>
-						<div class="pull-right">
-							<a href="<?= site_url('Absensi/generate') ?>" class="btn btn-success " style="color: white;"><i class="fa fa-refresh" style="color: white;"></i> Generated Gaji</a>
-						</div>
+						<?php if (!$gaji): ?>
+							<div class="pull-right">
+								<a href="<?= site_url('Absensi/generate') ?>" class="btn btn-success " style="color: white;"><i class="fa fa-refresh" style="color: white;"></i> Generated Gaji</a>
+							</div>
+						<?php else: ?>
+							<div class="pull-right">
+								<a href="javascript:void(0)" class="btn btn-success " style="color: white;"><i class="fa fa-check" style="color: white;"></i>&nbsp; Success Generated Gaji</a>
+							</div>
+						<?php endif ?>
 						<div class="clearfix"></div>
 					</div>
 					<div class="panel-wrapper collapse in">

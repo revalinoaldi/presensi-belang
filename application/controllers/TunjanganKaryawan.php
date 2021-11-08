@@ -58,6 +58,33 @@ class TunjanganKaryawan extends CI_Controller {
 		}
 	}
 
+	public function deleteTunjangan($id)
+	{
+		if (!$id) {
+			redirect('tunjangankaryawan','refresh');
+		}
+		$where = ['id_tunjangan' => $id];
+		$delete = $this->tunjangan->delete($where);
+		if ($delete) {
+			$alert = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+				  <strong>Success!</strong> Berhasil menghapus Record Tunjangan.
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				    <span aria-hidden="true">&times;</span>
+				  </button>
+				</div>';
+			$this->session->set_flashdata('notif', $alert);
+			redirect('tunjangankaryawan','refresh');
+		}else{
+			$alert = '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+				  <strong>Warning!</strong> Gagal menghapus record tunjangan.
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				    <span aria-hidden="true">&times;</span>
+				  </button>
+				</div>';
+			$this->session->set_flashdata('notif', $alert);
+			redirect('tunjangankaryawan','refresh');
+		}
+	}
 }
 
 /* End of file TunjanganKaryawan.php */

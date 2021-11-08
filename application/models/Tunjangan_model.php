@@ -58,9 +58,30 @@ class Tunjangan_model extends CI_Model {
 		$this->db->delete('tbl_jns_tunjangan');
 		if ($this->db->affected_rows()>0) {
 			return true;
-			# code...
 		}
 		else {
+			return false;
+		}
+	}
+
+	// =================================================================== \\
+
+	public function show($where='') {
+
+		$this->db->select('*');
+		$this->db->from('tbl_tunjangan_karyawan');
+		if (@$where) {
+			$this->db->where($where);
+		}
+		 return $this->db->get();
+	}
+
+	public function insert_tunjangan($insert)
+	{
+		$this->db->insert('tbl_tunjangan_karyawan', $insert);
+		if ($this->db->affected_rows() > 0) {
+			return true;
+		}else{
 			return false;
 		}
 	}

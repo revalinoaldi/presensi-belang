@@ -1,3 +1,9 @@
+<?php  
+  if (@$this->session->userdata('id')) {
+    redirect('Dashboard','refresh');
+  }
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
