@@ -15,9 +15,9 @@ class User_model extends CI_Model {
 
 		$this->db->select('*');
 		$this->db->from('user');
-		$this->db->order_by('id', 'desc');
+		$this->db->order_by('id', 'asc');
 		$query = $this->db->get();
-		return $query->result();
+		return $query;
 	}	
 	//detail user
 	public function detail($id_user) 
@@ -47,13 +47,23 @@ class User_model extends CI_Model {
 	public function tambah($data)
 	{
 		$this->db->insert('user',$data);
+		if ($this->db->affected_rows() > 0) {
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	//Edit
-	public function edit($data)
+	public function edit($where,$data)
 	{
-		$this->db->where('id', $data['id']);
+		$this->db->where($where);
 		$this->db->update('user', $data);
+		if ($this->db->affected_rows() > 0) {
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 

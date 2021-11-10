@@ -8,7 +8,7 @@
 						<div class="container-fluid">
 							<div class="row">
 								<div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
-									<span class="txt-dark block counter"><span class="counter-anim">2245</span></span>
+									<span class="txt-dark block counter"><span class="counter-anim"><?= count($emp) ?></span></span>
 									<span class="weight-500 uppercase-font block font-13">Total Karyawan</span>
 								</div>
 								<div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
@@ -28,9 +28,9 @@
 							<div class="row">
 								<div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
 									<span class="txt-dark block counter">
-										<span class="counter-anim">"  "</span>
+										<span class="counter-anim"><?= count($jabatan) ?></span>
 									</span>
-									<span class="weight-500 uppercase-font block">Total Divisi</span>
+									<span class="weight-500 uppercase-font block">Total Jabatan</span>
 								</div>
 								<div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
 									<i class="icon-control-rewind data-right-rep-icon txt-light-grey"></i>
@@ -48,7 +48,7 @@
 						<div class="container-fluid">
 							<div class="row">
 								<div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
-									<span class="txt-dark block counter"><span class="counter-anim">180</span></span>
+									<span class="txt-dark block counter"><span class="counter-anim">0</span></span>
 									<span class="weight-500 uppercase-font block">Cuti Bulanan</span>
 								</div>
 								<div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">

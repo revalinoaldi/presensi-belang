@@ -47,7 +47,7 @@
 						<div class="panel-body">
 							<div class="table-wrap">
 								<div class="table-responsive">
-									<table id="datable_1" class="table table-hover display  pb-30" >
+									<table id="datable_absensi" class="table table-hover display  pb-30" >
 										<thead>
 											<tr>
 												<th>No</th>
@@ -62,7 +62,6 @@
 												<th class="text-center">Sisa Cuti</th>
 												<th class="text-center">Total Tidak Masuk</th>
 												<th class="text-center">Total Hadir</th>
-												<th>Action</th>
 											</tr>
 										</thead>
 										<tfoot>
@@ -80,7 +79,6 @@
 												<th class="text-center">Sisa Cuti</th>
 												<th class="text-center">Total Tidak Masuk</th>
 												<th class="text-center">Total Hadir</th>
-												<th>Action</th>
 											</tr>
 										</tfoot>
 										<tbody>
@@ -99,9 +97,6 @@
 												<td style="text-align: center;"><?= $absen['sisa_jatah_cuti'] ?></td>
 												<td style="text-align: center;"><?= $absen['total_tidak_masuk'] ?></td>
 												<td style="text-align: center;"><?= ($absen['total_shift1']+$absen['total_shift2']+$absen['total_shift3'])-$absen['total_tidak_masuk'] ?></td>
-												<td>
-													<a href="#" class="btn btn-primary btn-rounded"><i class="fa fa-info"></i></a>
-												</td>
 											</tr>
 										<?php endforeach ?>
 									</tbody>
@@ -114,5 +109,12 @@
 		</div>
 	</div>
 
-	<script src="<?= base_url('assets/') ?>vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
-	<script src="<?= base_url('assets/') ?>dist/js/dataTables-data.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+
+<script src="<?= base_url('assets/') ?>dist/js/dataTables-data.js"></script>

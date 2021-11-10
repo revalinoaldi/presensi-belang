@@ -29,6 +29,9 @@
 			<li>
 				<a href="<?php echo base_url('tunjangankaryawan') ?>">Data Tunjangan</a>
 			</li>
+			<li>
+				<a href="<?php echo base_url('Users') ?>">Data Users</a>
+			</li>
 		</ul>
 	</li>
 	<li>

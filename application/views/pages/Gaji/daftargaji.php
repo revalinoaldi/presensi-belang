@@ -79,6 +79,9 @@
 				<div class="pull-left">
 					<h6 class="panel-title txt-dark">Daftar Gaji kotor Karyawan</h6>
 				</div>
+				<div class="pull-right">
+					<a target="_blank" href="<?= site_url('Laporan/report') ?>" title="Cetak Slip Gaji" class="btn btn-primary"><i class="fa fa-print" style="color: white;"></i> </a>
+				</div>
 				<div class="clearfix"></div>
 			</div>
 			<div class="panel-wrapper collapse in">
@@ -142,7 +145,7 @@
 											<td>Rp <?= number_format($val['total_lemburan'],0,',','.') ?></td>
 											<td>Rp <?= number_format($val['total_gaji'],0,',','.') ?></td>
 											<td>
-												<a href="#" class="btn btn-primary btn-rounded btn-sm"><i class="fa fa-print"></i></a>
+												<a target="_blank" href="<?= site_url('Laporan/report/'.$val['nip']) ?>" title="Cetak Slip Gaji" class="btn btn-primary btn-rounded btn-sm"><i class="fa fa-print"></i></a>
 											</td>
 										</tr>
 									<?php endforeach ?>

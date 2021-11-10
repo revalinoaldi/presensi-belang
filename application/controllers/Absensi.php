@@ -111,8 +111,19 @@ class Absensi extends CI_Controller {
 			$totalTunjangan = 0;
 			$totalTunjanganTetap = 0;
 
+			$totalTunjShift2 = 0;
+			$totalTunjShift3 = 0;
+
 			foreach ($tunjangan as $tunj) {
-				$totalTunjangan += $tunj['total_tunjangan'];
+				if ($tunj['id_tunjangan'] == 4) {
+					$ttj = $val['total_shift2']*$tunj['total_tunjangan'];
+				}elseif ($tunj['id_tunjangan'] == 5) {
+					$ttj = $val['total_shift3']*$tunj['total_tunjangan'];
+				}else{
+					$ttj = $tunj['total_tunjangan'];
+				}
+
+				$totalTunjangan += $ttj;
 
 				if ($tunj['tipe_tunjangan'] == 'tetap') {
 					$totalTunjanganTetap += $tunj['total_tunjangan'];
@@ -134,10 +145,18 @@ class Absensi extends CI_Controller {
 			$this->gaji->insert($generate);
 
 			foreach ($tunjangan as $tunj) {
+				if ($tunj['id_tunjangan'] == 4) {
+					$ttj = $val['total_shift2']*$tunj['total_tunjangan'];
+				}elseif ($tunj['id_tunjangan'] == 5) {
+					$ttj = $val['total_shift3']*$tunj['total_tunjangan'];
+				}else{
+					$ttj = $tunj['total_tunjangan'];
+				}
+				
 				$tunjEmp = [
 					'id_gaji' => $generate['id_gaji'],
 					'id_tunjangan' => $tunj['id_tunjangan'],
-					'total_tunjangan' => $tunj['total_tunjangan']
+					'total_tunjangan' => $ttj
 				];
 				$this->tunj->insert_tunjangan($tunjEmp);
 			}
