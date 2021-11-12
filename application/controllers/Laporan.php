@@ -64,7 +64,7 @@ class Laporan extends CI_Controller {
 		}else{
 			$month = date('Y-m');
 
-			$date1 = date_create($month.'-15');
+			$date1 = date_create($month.'-16');
 			$date2 = date_create($month.'-15');
 			date_add($date1,date_interval_create_from_date_string("-1 month"));
 
@@ -80,7 +80,7 @@ class Laporan extends CI_Controller {
 			$today = date("Y-m-d", strtotime($now));
 		}
 		$first = date('Y-m-01', strtotime($today));
-		$last = date('Y-m-t', strtotime($today));
+		$last = date('Y-m-d', strtotime($date['tgl_at']));
 
 		$whereGaji = [
 			'tgl_terima_gaji >= ' => $first,
@@ -101,28 +101,11 @@ class Laporan extends CI_Controller {
 		}
 		$filename = "Slip_Gaji_".date('F_Y', strtotime($today)).".pdf";
 
-		$pdf = new \TCPDF('L', 'cm', 'A5','true');
-	    $pdf->setPrintHeader(false);
-		$pdf->setPrintFooter(false);
-		$pdf->SetHeaderMargin(false);
-		$pdf->SetFooterMargin(false);
-		$pdf->setMargins(1, 0.8, 1);
-	    $pdf->SetAutoPageBreak(true, 0);
-
 		foreach ($gajinew as $geng) {
-			$pdf->AddPage();
 			$data['val'] = $geng;
-			$pdf->SetFont('helvetica', '', '8');
-			// $file = $this->load->view('pages/Report/SlipGaji', $data, TRUE);
 			$this->load->view('pages/Report/SlipGajiFix', $data, FALSE);
-			// $file = $this->load->view('pages/Report/SlipGajiFix', $data, TRUE);
-			// $pdf->writeHTML($file);
 		}
-		// $pdf->Output($filename, 'I');
 	}
-
-
-
 }
 
 /* End of file Laporan.php */

@@ -10,12 +10,6 @@ class Api extends CI_Model {
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_VERBOSE, true);
 
-		// if (@$data != null) {
-		// 	curl_setopt($ch, CURLINFO_HEADER_OUT, true);
-		// 	curl_setopt($ch, CURLOPT_POST, true);
-		// 	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-		// }
-
 		$arr = [
 			'x-key: api-secret-key-presensi',
 			'Content-Type: application/json'

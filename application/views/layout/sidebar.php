@@ -49,13 +49,7 @@
 		<a href="javascript:void(0);" data-toggle="collapse" data-target="#lap_dr"><div class="pull-left"><i class="zmdi zmdi-receipt mr-20"></i><span class="right-nav-text">Laporan </span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 		<ul id="lap_dr" class="collapse collapse-level-1">
 			<li>
-				<a href="calendar.html">Daftar Absensi</a>
-			</li>
-			<li>
 				<a href="<?php echo base_url('laporan') ?>">Daftar Gaji karyawan</a>
-			</li>
-			<li>
-				<a href="weather.html">Slip Gaji Kotor</a>
 			</li>
 		</ul>
 	</li>
