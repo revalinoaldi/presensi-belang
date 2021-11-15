@@ -11,10 +11,13 @@ class User_model extends CI_Model {
 
 
 	//listing all user
-	public function listing() {
+	public function listing($where='') {
 
 		$this->db->select('*');
 		$this->db->from('user');
+		if (@$where) {
+			$this->db->where($where);
+		}
 		$this->db->order_by('id', 'asc');
 		$query = $this->db->get();
 		return $query;
@@ -68,10 +71,15 @@ class User_model extends CI_Model {
 
 
 	//Delete
-	public function delete($data)
+	public function delete($where)
 	{
-		$this->db->where('id', $data['id']);
-		$this->db->delete('user', $data);
+		$this->db->where($where);
+		$this->db->delete('user');
+		if ($this->db->affected_rows() > 0) {
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 }

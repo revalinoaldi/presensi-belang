@@ -1,6 +1,7 @@
 
 <link href="<?= base_url() ?>assets/vendors/bower_components/filament-tablesaw/dist/tablesaw.css" rel="stylesheet" type="text/css"/>
 <link href="<?= base_url('assets/') ?>vendors/bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.min.css">
 <div class="row">
 	<div class="col-sm-12">
 		<div class="panel panel-default card-view">
@@ -54,8 +55,8 @@
 											<?php endif ?>
 										</td>
 										<td class="text-center">
-											<a href="#" class="btn btn-success" data-toggle="modal" data-target="#modalForm" data-action="update" data-primary="<?= $val['id'] ?>"><i class="fa fa-pencil"></i></a>
-											<a href="#" class="btn btn-danger"><i class="fa fa-user-times"></i></a>
+											<a href="#" class="btn btn-success" data-toggle="modal" data-target="#modalForm" data-action="update" data-pk="<?= $val['id'] ?>"><i class="fa fa-pencil"></i></a>
+											<a href="#" class="btn btn-danger" onclick="dlt('<?= $val['id'] ?>');"><i class="fa fa-user-times" ></i></a>
 										</td>
 									</tr>
 								<?php endforeach ?>
@@ -93,23 +94,9 @@
 						<input type="text" class="form-control" id="uname" name="uname" required="">
 					</div>
 					<div class="form-group">
-						<label for="pass" class="control-label">Password<span class="text-danger">*</span>:</label>
+						<label for="pass" class="control-label">Password:</label>
 						<input type="password" class="form-control" id="pass" name="pass">
 					</div>
-					<!-- <div class="form-group">
-						<label for="avatar" class="control-label">Avatar<span class="text-danger">*</span>:</label>
-						<input type="file" id="avatar" name="avatar" accept="image/*">
-						<p class="help-block">Example block-level help text here.</p>
-					</div> -->
-					<!-- <div class="form-group">
-						<?php $arr = [0 => 'Not Active', 1 => 'Active'] ?>
-						<label for="active" class="control-label">Active User<span class="text-danger">*</span>:</label>
-						<select class="form-control" id="active" name="active" required="">
-							<?php foreach ($arr as $key => $val): ?>
-								<option value="<?= $key ?>"><?= $val ?></option>
-							<?php endforeach ?>
-						</select>
-					</div> -->
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -129,20 +116,42 @@
 
 <!-- Switchery JavaScript -->
 <script src="<?= base_url('assets/') ?>vendors/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.all.min.js"></script>
 <script src="<?= base_url('assets/') ?>dist/js/dataTables-data.js"></script>
 <script src="<?= base_url() ?>assets/dist/js/init.js"></script>
 
+
+
 <!-- /Row -->
 <script type="text/javascript">
-	function deleteme(val) {
-		const result = confirm('Yakin hapus data?');
-		if (result) {
-			const url = `<?= site_url('tunjangankaryawan/deleteTunjangan/') ?>${val}`
-			window.location.href = url
-		}
+	 function dlt(val) {
+		Swal.fire({
+			title: 'Are you sure?',
+			text: "You won't be able to revert this!",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Yes, delete it!'
+		}).then(async (result) => {
+			if (result.isConfirmed) {
+				let data = await fetch(`<?= site_url('Users/deleteUser/') ?>${val}`).then(response => response.json());
+				console.log(data)
+				if (data.result) {
+					Swal.fire(
+						'Deleted!',
+						'Your record has been deleted.',
+						'success'
+					)
+					setTimeout(() => {
+						window.location.href = `<?= site_url('Users') ?>`
+					}, 2000)
+				}
+			}
+		})
 	}
-
-	
+</script>
+<script type="text/javascript">
 	$('#modalForm').on('show.bs.modal', async function (event) {
 		var button = $(event.relatedTarget)
 		let action = button.data('action')
@@ -157,14 +166,17 @@
 			modal.find('.modal-body input#pass').val('')
 			modal.find('.modal-content #frmPost').attr('action',url)
 		}else{
-			id = button.data('primary')
+			id = button.data('pk')
+			console.log(id)
 			let data = await fetch(`<?= site_url('Users/getUsers/') ?>${id}`).then(response => response.json())
+			
+
 			modal.find('.modal-body input#nama').val(data.data.nama)
 			modal.find('.modal-body input#email').val(data.data.email)
 			modal.find('.modal-body input#uname').val(data.data.username)
 			
 			modal.find('.modal-content #frmPost').attr('action',`${url}${id}`)
-			console.log(data)
+			
 		}
 		
 	})

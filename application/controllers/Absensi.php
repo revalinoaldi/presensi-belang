@@ -113,14 +113,14 @@ class Absensi extends CI_Controller {
 
 			$totalTunjShift2 = 0;
 			$totalTunjShift3 = 0;
-
+			$totalAbsen = $val['total_shift1']+$val['total_shift2']+$val['total_shift3']-$val['total_tidak_masuk'];
 			foreach ($tunjangan as $tunj) {
 				if ($tunj['id_tunjangan'] == 4) {
 					$ttj = $val['total_shift2']*$tunj['total_tunjangan'];
 				}elseif ($tunj['id_tunjangan'] == 5) {
 					$ttj = $val['total_shift3']*$tunj['total_tunjangan'];
 				}elseif ($tunj['id_tunjangan'] == 3) {
-					if ($val['total_tidak_masuk'] == 0) {
+					if ($val['total_tidak_masuk'] == 0 && $totalAbsen >= 22) {
 						$ttj = $tunj['total_tunjangan'];
 					}else{
 						$ttj = 0;
@@ -156,7 +156,14 @@ class Absensi extends CI_Controller {
 					$ttj = $val['total_shift2']*$tunj['total_tunjangan'];
 				}elseif ($tunj['id_tunjangan'] == 5) {
 					$ttj = $val['total_shift3']*$tunj['total_tunjangan'];
-				}else{
+				}elseif ($tunj['id_tunjangan'] == 3) {
+					if ($val['total_tidak_masuk'] == 0 && $totalAbsen >= 22) {
+						$ttj = $tunj['total_tunjangan'];
+					}else{
+						$ttj = 0;
+					}
+				}
+				else{
 					$ttj = $tunj['total_tunjangan'];
 				}
 				

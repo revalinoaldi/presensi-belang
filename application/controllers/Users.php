@@ -67,6 +67,26 @@ class Users extends CI_Controller {
 		}
 	}
 
+	public function deleteUser($id='')
+	{
+		if (@$id) {
+			$i = ['id' => $id];
+			$res = [
+				'result' => true,
+				'message' => "Success",
+				'data' => $this->user->delete($i)
+			];
+		}else{
+			$res = [
+				'result' => false,
+				'message' => "Gagal",
+				'data' => []
+			];
+		}
+		echo json_encode($res);
+		
+	}
+
 	public function getUsers($id='')
 	{
 		if (@$id) {
