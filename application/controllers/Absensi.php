@@ -111,7 +111,7 @@ class Absensi extends CI_Controller {
 		foreach ($absen as $val) {
 			$p = [];
 			$emp = $this->api->getApi('Employee/'.$val['nip_karyawan'])['data'];
-			$lembur = $this->api->getApi('Lemburan/'.$val['nip_karyawan'])['data'];
+			$lembur = $this->api->getApi('Lemburan/'.$val['nip_karyawan'],$date)['data'];
 
 			$i = ['id_jabatan' => $emp['id_jabatan']];
 			$ip = ['nip' => $val['nip_karyawan']];
@@ -199,9 +199,33 @@ class Absensi extends CI_Controller {
 
 	public	function lembur()
 	{
+		$date = [];
+		if (@$this->input->get()) {
+			$date['tgl_from'] = date('Y-m-d', strtotime($this->input->get('from')));
+			$date['tgl_at'] = date('Y-m-d', strtotime($this->input->get('at')));
+		}else{
+
+			if (date('d') >= 16) {
+				$month = date('Y-m');
+
+				$date1 = date_create($month.'-16');
+				$date2 = date_create($month.'-15');
+				date_add($date2,date_interval_create_from_date_string("+1 month"));
+			}else{
+				$month = date('Y-m');
+
+				$date1 = date_create($month.'-16');
+				$date2 = date_create($month.'-15');
+				date_add($date1,date_interval_create_from_date_string("-1 month"));
+			}
+
+			$date['tgl_from'] = date_format($date1,"Y-m-d");
+			$date['tgl_at'] = date_format($date2,"Y-m-d");
+		}
 		$data = [
 			'content' => 'pages/absen/vlembur',
-			'data' => $this->api->getApi('Lemburan/')['data']
+			'data' => $this->api->getApi('Lemburan/',$date)['data'],
+			'date' => $date,
 		];
 
 		$data['title'] = "E-Penggajian|Ikeda";

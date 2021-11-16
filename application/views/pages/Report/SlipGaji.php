@@ -134,7 +134,7 @@
 		<?php endforeach ?>
 
 		<tr>
-			<td style="width: 75%">Lemburan (<?= $val['lembur'] ?> Jam)</td>
+			<td style="width: 75%">Lemburan (<?= @$val['lembur'] ? '-' : 0 ?> Jam)</td>
 			<td class="text-right">Rp <?= number_format($val['total_lemburan'],0,',','.') ?></td>
 		</tr>
 

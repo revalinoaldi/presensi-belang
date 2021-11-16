@@ -11,7 +11,7 @@
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
 					<div class="table-wrap">
-						<p class="text-muted">Daftar Lembur Karyawan dalam 1 periode</p>
+						<p>Record Date : <?= date('d M Y', strtotime($date['tgl_from'])) ?> - <?= date('d M Y', strtotime($date['tgl_at'])) ?></p>
 						<div class="mt-40">
 							<table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" id="datable_1" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch>
 								<thead>
