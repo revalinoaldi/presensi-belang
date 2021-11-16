@@ -34,11 +34,11 @@
 						</div>
 						<?php if (!$gaji): ?>
 							<div class="pull-right">
-								<a href="<?= site_url('Absensi/generate') ?>" class="btn btn-success " style="color: white;"><i class="fa fa-refresh" style="color: white;"></i> Generated Gaji</a>
+								<a href="<?= site_url('Absensi/generate') ?>" class="btn btn-success " style="color: white;"><i class="fa fa-refresh" style="color: white;"></i> Generated Gaji bulan <?= date('F') ?></a>
 							</div>
 						<?php else: ?>
 							<div class="pull-right">
-								<a href="javascript:void(0)" class="btn btn-success " style="color: white;"><i class="fa fa-check" style="color: white;"></i>&nbsp; Success Generated Gaji</a>
+								<a href="javascript:void(0)" class="btn btn-success " style="color: white;"><i class="fa fa-check" style="color: white;"></i>&nbsp; Success Generated Gaji bulan <?= date('F') ?></a>
 							</div>
 						<?php endif ?>
 						<div class="clearfix"></div>

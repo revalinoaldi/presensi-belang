@@ -62,6 +62,8 @@ class Laporan extends CI_Controller {
 			$date['tgl_from'] = date('Y-m-d', strtotime($this->input->get('from')));
 			$date['tgl_at'] = date('Y-m-d', strtotime($this->input->get('at')));
 		}else{
+			
+
 			$month = date('Y-m');
 
 			$date1 = date_create($month.'-16');
@@ -80,7 +82,7 @@ class Laporan extends CI_Controller {
 			$today = date("Y-m-d", strtotime($now));
 		}
 		$first = date('Y-m-01', strtotime($today));
-		$last = date('Y-m-d', strtotime($date['tgl_at']));
+		$last = date('Y-m-t', strtotime($date['tgl_at']));
 
 		$whereGaji = [
 			'tgl_terima_gaji >= ' => $first,

@@ -4,7 +4,9 @@
 
 $(document).ready(function() {
 	"use strict";
-	
+	const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    var temp = new Date();
+
 	$('#datable_1').DataTable();
 
     $('#datable_2').DataTable({ "lengthChange": false});
@@ -15,20 +17,24 @@ $(document).ready(function() {
             'copyHtml5',
             {
   				extend: 'excelHtml5',
+                title: 'Laporan Daftar Slip Gaji Bulan '+months[temp.getMonth()]+` ${temp.getFullYear()}`,
+                // messageTop: 'Laporan Daftar Absen Bulan '+months[temp.getMonth()]+` ${temp.getFullYear()}`,
   				exportOptions: {
-  					columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13]
+  					columns: ':not(:last-child)'
   				}
   			},
             'csvHtml5'
         ]
     });
-
+    
     $('#datable_absensi').DataTable({
         dom: 'Bfrtip',
         buttons: [
             'copyHtml5',
             {
-                extend: 'excelHtml5'
+                extend: 'excelHtml5',
+                // messageTop: 'Laporan Daftar Absen Bulan '+months[temp.getMonth()]+` ${temp.getFullYear()}`,
+                title: 'Laporan Daftar Absen Bulan '+months[temp.getMonth()]+` ${temp.getFullYear()}`
             },
             'csvHtml5'
         ]

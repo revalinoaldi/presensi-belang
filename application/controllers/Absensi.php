@@ -23,11 +23,20 @@ class Absensi extends CI_Controller {
 			$date['tgl_from'] = date('Y-m-d', strtotime($this->input->get('from')));
 			$date['tgl_at'] = date('Y-m-d', strtotime($this->input->get('at')));
 		}else{
-			$month = date('Y-m');
 
-			$date1 = date_create($month.'-16');
-			$date2 = date_create($month.'-15');
-			date_add($date1,date_interval_create_from_date_string("-1 month"));
+			if (date('d') >= 16) {
+				$month = date('Y-m');
+
+				$date1 = date_create($month.'-16');
+				$date2 = date_create($month.'-15');
+				date_add($date2,date_interval_create_from_date_string("+1 month"));
+			}else{
+				$month = date('Y-m');
+
+				$date1 = date_create($month.'-16');
+				$date2 = date_create($month.'-15');
+				date_add($date1,date_interval_create_from_date_string("-1 month"));
+			}
 
 			$date['tgl_from'] = date_format($date1,"Y-m-d");
 			$date['tgl_at'] = date_format($date2,"Y-m-d");
