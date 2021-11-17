@@ -24,17 +24,17 @@ class Absensi extends CI_Controller {
 			$date['tgl_at'] = date('Y-m-d', strtotime($this->input->get('at')));
 		}else{
 
-			if (date('d') >= 16) {
+			if (date('d') >= 21) {
 				$month = date('Y-m');
 
-				$date1 = date_create($month.'-16');
-				$date2 = date_create($month.'-15');
+				$date1 = date_create($month.'-21');
+				$date2 = date_create($month.'-20');
 				date_add($date2,date_interval_create_from_date_string("+1 month"));
 			}else{
 				$month = date('Y-m');
 
-				$date1 = date_create($month.'-16');
-				$date2 = date_create($month.'-15');
+				$date1 = date_create($month.'-21');
+				$date2 = date_create($month.'-20');
 				date_add($date1,date_interval_create_from_date_string("-1 month"));
 			}
 
@@ -76,8 +76,8 @@ class Absensi extends CI_Controller {
 		}else{
 			$month = date('Y-m');
 
-			$date1 = date_create($month.'-16');
-			$date2 = date_create($month.'-15');
+			$date1 = date_create($month.'-21');
+			$date2 = date_create($month.'-20');
 			date_add($date1,date_interval_create_from_date_string("-1 month"));
 
 			$date['tgl_from'] = date_format($date1,"Y-m-d");
@@ -205,17 +205,17 @@ class Absensi extends CI_Controller {
 			$date['tgl_at'] = date('Y-m-d', strtotime($this->input->get('at')));
 		}else{
 
-			if (date('d') >= 16) {
+			if (date('d') >= 21) {
 				$month = date('Y-m');
 
-				$date1 = date_create($month.'-16');
-				$date2 = date_create($month.'-15');
+				$date1 = date_create($month.'-21');
+				$date2 = date_create($month.'-20');
 				date_add($date2,date_interval_create_from_date_string("+1 month"));
 			}else{
 				$month = date('Y-m');
 
-				$date1 = date_create($month.'-16');
-				$date2 = date_create($month.'-15');
+				$date1 = date_create($month.'-21');
+				$date2 = date_create($month.'-20');
 				date_add($date1,date_interval_create_from_date_string("-1 month"));
 			}
 

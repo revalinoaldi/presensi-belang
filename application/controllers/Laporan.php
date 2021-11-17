@@ -66,8 +66,8 @@ class Laporan extends CI_Controller {
 
 			$month = date('Y-m');
 
-			$date1 = date_create($month.'-16');
-			$date2 = date_create($month.'-15');
+			$date1 = date_create($month.'-21');
+			$date2 = date_create($month.'-20');
 			date_add($date1,date_interval_create_from_date_string("-1 month"));
 
 			$date['tgl_from'] = date_format($date1,"Y-m-d");
